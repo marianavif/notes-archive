@@ -76,6 +76,15 @@ operadores:
 		divisão
 	%
 		módulo (resto da divisão de dois inteiros)
+	++
+		incremento de 1
+	+= numero
+		incremento de numero
+	--
+		decremento de 1
+	-= numero
+		decremento de numero
+		
 	&&
 		AND
 	||
