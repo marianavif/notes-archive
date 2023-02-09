@@ -96,9 +96,16 @@ operadores:
 Estruturas de repetição:
 	
 	while(condição){
-		comando
+		comando;
 	}
-			enquanto condição for verdadeira, executa o comando. verifica se condição é verdadeira antes de executar o comando
+			enquanto condição for verdadeira, executa o comando. verifica se condição é verdadeira antes de executar 
+			o comando
+	
+	for(expressao inicial; expressao final; expressao de passo){
+		comando;
+	}
+			executa o comando a partir da expressão inicial atualizando a expressão inicial com a expressão de passo a cada 
+			repetição. O loop se repete até que a expressão final deixe de ser verdadeira. 
 
 
 Funções: 
