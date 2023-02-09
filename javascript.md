@@ -84,6 +84,14 @@ operadores:
 	condição ? (expressao1) : (expressao2)
 		operador ternário; se condição for verdadeira, executar expressao1. se condição for falsa, executar expressao2
 
+Estruturas de repetição:
+	
+	while(condição){
+		comando
+	}
+			enquanto condição for verdadeira, executa o comando. verifica se condição é verdadeira antes de executar o comando
+
+
 Funções: 
 
 *var pode ser número, string ou variável contendo número ou string
