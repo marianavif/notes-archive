@@ -13,41 +13,41 @@ declarando variáveis e constantes:
 estruturas condicionais:
 
 	if(condição){
-		comando;
+		comandos;
 	}
-			se condição for verdadeira, comando será executado.
+			se condição for verdadeira, comandos será executado.
     
 	if(condição){
-		comando;
+		comandos;
 	} else {
-		comando2;
+		comandos2;
 	}
-			se condição for verdadeira, comando será executado. 
-			se não for, comando2 será executado.
+			se condição for verdadeira, comandos será executado. 
+			se não for, comandos2 será executado.
     
 	if(condição){
-		comando;
+		comandos;
 	} else if(condição2){
-		comando2;
+		comandos2;
 	} else {
-		comando3;
+		comandos3;
 	}
-			se condição for verdadeira, comando será executado.
-			se não for, se condição2 for verdadeira, comando2 será executado.
-			se condição e condição2 não forem verdadeiras, comando3 será executado.
+			se condição for verdadeira, comandos será executado.
+			se não for, se condição2 for verdadeira, comandos2 será executado.
+			se condição e condição2 não forem verdadeiras, comandos3 será executado.
     
 	switch (variável) {
 		case ('valor'):
-			comando;
+			comandos;
 			break;
 		case ('valor2'): 
-			comando2;
+			comandos2;
 			break;
 		default:
-			comando3
+			comandos3
 	}
-				se o valor de variável for 'valor', executará comando; caso seja 'valor2', executará comando2; 
-				por padrão(default) executará comando3;
+				se o valor de variável for 'valor', executará comandos; caso seja 'valor2', executará comandos2; 
+				por padrão(default) executará comandos3;
 
 
 operadores:
@@ -96,19 +96,49 @@ operadores:
 Estruturas de repetição:
 	
 	while(condição){
-		comando;
+		comandos;
 	}
-			enquanto condição for verdadeira, executa o comando. verifica se condição é verdadeira antes de executar 
+			enquanto condição for verdadeira, executa os comandos. verifica se condição é verdadeira antes de executar 
 			o comando
 	
 	for(expressao inicial; expressao final; expressao de passo){
-		comando;
+		comandos;
 	}
-			executa o comando a partir da expressão inicial atualizando a expressão inicial com a expressão de passo a cada 
+			executa os comandos a partir da expressão inicial atualizando a expressão inicial com a expressão de passo a cada 
 			repetição. O loop se repete até que a expressão final deixe de ser verdadeira. 
 
+declarando funções:
+	
+	function nome(parâmetro1,parâmetro2){
+		comandos;
+		return comando;
+	}
+			o parâmetro é a forma de passar valores externos para a função. A função pode ter um, vários, ou nenhum parâmetro.
+			sempre que a função nome for chamada, comando será executado e o valor resultante será retornado para a variável 
+			à qual foi atribuída a função. return não é necessário, tornando a função em apenas comandos sem valores retornando.
 
-Funções: 
+chamando a função nome:
+	
+	se tiver parâmetros:
+	 	
+		nome(parâmetro1,parâmetro2);
+	
+	se não tiver parâmetro:
+		
+		nome();
+	
+atribuindo o valor da função sem parâmetros a uma variável:
+	
+	var x = nome();
+
+atribuindo o valor da função com parâmetros a uma variável:
+	
+	var x = nome(parâmetro1,parâmetro2);
+
+
+
+
+Funções embutidas: 
 
 *var pode ser número, string ou variável contendo número ou string
 
