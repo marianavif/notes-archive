@@ -8,6 +8,17 @@ declarando variáveis e constantes:
     	var nome 
 		
     	let nome
+	
+declarando arrays:
+	
+	var nome = [item1,item2,item3]
+		declara uma variável chamada nome, contendo uma lista, onde cada item está separado por vírgulas, contendo os itens
+		item1,item2 e item3.
+	
+referindo-se aos itens do array:
+
+	nome[i]
+		referência ao item do array nome de índice i, 0 <= i <= n-1, onde n é a quantidade de itens do array
 		
 
 estruturas condicionais:
@@ -138,7 +149,7 @@ atribuindo o valor da função com parâmetros a uma variável:
 
 
 
-Funções embutidas: 
+Métodos (funções embutidas) do javascript: 
 
 *var pode ser número, string ou variável contendo número ou string
 
@@ -168,3 +179,11 @@ Funções embutidas:
 
 	parseFloat(var)
 		Torna em float o valor numérico de var
+		
+	
+	nomedoarray.push(valor1,valor2,valor3)
+		Insere valor1,valor2 e valor3 ao final do array nomedoarray em respectiva ordem
+	
+	
+	nomedoarray.pop()
+		Remove o último item do array nomedoarray
