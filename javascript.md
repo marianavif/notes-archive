@@ -122,11 +122,11 @@ declarando funções:
 	
 	function nome(parâmetro1,parâmetro2){
 		comandos;
-		return comando;
+		return valor;
 	}
 			o parâmetro é a forma de passar valores externos para a função. A função pode ter um, vários, ou nenhum parâmetro.
-			sempre que a função nome for chamada, comando será executado e o valor resultante será retornado para a variável 
-			à qual foi atribuída a função. return não é necessário, tornando a função em apenas comandos sem valores retornando.
+			sempre que a função nome for chamada, comandos será executado e o valor será retornado para o usuário.
+			return não é necessário, tornando a função em apenas comandos sem valores retornando.
 
 chamando a função nome:
 	
