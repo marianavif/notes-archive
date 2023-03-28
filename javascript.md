@@ -187,3 +187,6 @@ Métodos (funções embutidas) do javascript:
 	
 	nomedoarray.pop()
 		Remove o último item do array nomedoarray
+		
+	document.querySelector(str tag)
+		Pega o valor advindo da tag do html selecionada
