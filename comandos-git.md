@@ -58,7 +58,7 @@ Branches ***workflow***:
 
 ***
 
-> All expressions in between <> ought to be replaced with expressions following as suggested inside it.
+> All expressions in between <> ought to be replaced with expressions following as suggested inside it, removing <>.
 
 Initialize Git repository in a folder:
 
