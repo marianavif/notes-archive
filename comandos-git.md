@@ -2,7 +2,7 @@
 
 ***
 
-## Notes
+## Glossary
 
 <br>
 
@@ -33,6 +33,24 @@
 ***tag****: checkpoint which results in a *version* of the project, changes made after that will be included on later versions.
 
 ***release***: launched version of the project which can be cloned or downloaded by anyone with the link to it. Can be done only manually, via GitHub website.
+
+***issues***: problems pointed out usually by other users on GitHub.
+
+***pull request***: suggestions proposed usually by other users on GitHub.
+
+***squash***: merging commits into one commit.
+
+> It is interesting to pull request with a single commit, so it will be simpler to the owner of the repository to analyze it.
+
+***bisect***: going through commits to localize mistakes made.
+
+***hooks***: important events on Git, that execute an action when happening.
+
+Branches ***workflow***:
+
+![Git workflow](https://caelum-online-public.s3.amazonaws.com/1276+-+Git+e+Github+pt+2/transcri%C3%A7%C3%A3o/20180412-git-flow.png)
+
+
 
 <br>
 
@@ -87,6 +105,14 @@ Commit:
 Commit with message:
 
     git commit -m "<message>"
+
+Analyze all changes made in a commit:
+
+    git show <commit-hash>
+
+Find out who did each change on file:
+
+    git blame <file-name>
 
 Check on committing history:
 
@@ -181,6 +207,14 @@ Create a new branch and work on it:
 
     git checkout -b <new-branch-name>
 
+Remove a branch:
+
+    git branch -d <branch-name>
+
+Force removal of a branch:
+
+    git branch -D <branch-name>
+
 Merging a specific branch to the current branch:
 
     git merge <specific-branch-name>
@@ -232,3 +266,43 @@ Check on the list of tags:
 Send a tag to the remote repository:
 
     git push <remote-repository-name> <tag-name>
+
+Squash commits:
+
+    git rebase -i <next-commit-hash>~<number-of-previous-commits-to-squash>
+
+> Follow the instructions that show up on the command line. To write on the editor, type *i*; to finish writing press esc; to exit type *:x* and press enter.
+
+> Example: squashing from the last commit (not the current) to the second commit before it
+
+      git rebase -i HEAD~3
+
+Bring a specific commit from an other branch to the current branch:
+
+    git cherry-pick <commit-hash>
+
+Process of bisecting the code:
+
+> Start bisecting
+
+    git bisect start
+
+> Identify the most recent bad commit (limiting the process)
+
+    git bisect bad <commit-hash>
+
+> Identify the oldest between the commits to analyze, where there was no mistake (limiting the process)
+
+    git bisect good <commit-hash>
+
+> Search for the commit where the mistake hasn't been made yet. If the commit shown is bad, type
+
+    git bisect bad
+
+> If the commit shown is good, type
+
+    git bisect good
+
+> Finally, to end the search and return to the current state of the branch type
+
+    git bisect reset
