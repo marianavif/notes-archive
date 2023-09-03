@@ -1,2 +1,2 @@
-# linguagens-archive
-Arquivos sobre linguagens que aprendo
+# notes
+Notes on everything etc.
