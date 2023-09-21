@@ -7,6 +7,9 @@
 ## Glossary
 
 <br>
+
+***abstrat class***: similar to a common class, it allows some (or all) of its methods to be only declared, not defined. A class which inherits from an abstract class must define all of the abstract methods. An abstract class cannot instantiate objects.
+
 ***attribute***: characteristics of a class which distinguish its objects.
 
 ***static attributes***: constant valued attributes which can be shared with all instances of a class.
@@ -27,6 +30,8 @@
 
 ***inheritance tree***: a single hierarchy comprehends all existent classes, meaning there's one common-to-all super class. It is the adopted model in Java (the common-to-all super class in Java is the *Object* class).
 
+***interface***: declares an empty set of static attributes and public methods, which must be defined in each class that implements the interface.
+
 ***late binding***: resource which postpones a method resolution until when it is effectively called; it will resolve in execution time and the method used will be defined by the object *actual* class, though additional processing will be demanded to find out its type and can turn the code less efficient. To avoid late binding, declare constant methods.
 
 ***method***: actions done by/on the objects of a class.
@@ -39,9 +44,13 @@
 
 ### Reserved words in Java
 
-***extends***: used to create a subclass. A Java subclass can extend *only* one class, as it's called **simple inheritance**. All classes implicitly extend the *Object* class.
+***abstract***: used to declare an abstract class or method.
+
+***extends***: used to create a subclass or subinterface. A Java subclass can extend *only* one class, as it's called **simple inheritance**. All classes implicitly extend the *Object* class. Interfaces can also respond to a hierarchy; a class which implements a subinterface must define all methods from the subinterface, including superinterface ones. Java allows **multiple inheritance** through interface implementation. An interface can extend one or more interfaces.
 
 ***final***: used to declare a constant attribute, local variable, method or class (meaning it cannot be overwritten). Final classes cannot be extended.
+
+***implements***: used to implement an interface to a class. A class can implement one or more interfaces.
 
 ***super***: used in subclasses to call a method or attribute from the parent class identical to it.
 
