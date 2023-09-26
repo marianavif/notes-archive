@@ -8,7 +8,7 @@
 
 <br>
 
-***abstrat class***: similar to a common class, it allows some (or all) of its methods to be only declared, not defined. A class which inherits from an abstract class must define all of the abstract methods. An abstract class cannot instantiate objects.
+***abstrat class***: similar to a common class, it allows some (or all) of its methods to be only declared, not defined. A class which inherits from an abstract class must define all of the abstract methods. An abstract class cannot instantiate objects and it must be extended.
 
 ***attribute***: characteristics of a class which distinguish its objects.
 
@@ -23,6 +23,8 @@
 > When a class is created, a new type of object is created.
 
 ***class constructor***: a special class method named with the class name which is used to create/initialize an object of the class. It doesn't necessarily receive all or any parameters, it depends on its objective. It can have verifications and/or methods before attributing a parameter to the class attributes. If a constructor is declared in a class, it automatically loses the standard constructor Java creates for it, unless it is declared explicitly. A class can have as many constructors as necessary, by method overloading. When an object of a subclass is initialized, it is interesting to call the super constructor inside the subclass constructor, unless the constructor overwrites the super constructor. If not specified to do it, Java will call the standard super constructor and create a non specific object of the super class.
+
+***encapsulation***: restricting the direct acces to some components of an object, so users cannot access state values for all of the variables of a particular object. Can be used to hide both data members and data functions or methods associated with an instantiated class or object. In object-oriented programming, it refers to the bundling of data, along with the methods that operate on that data, into a single unit.
 
 ***inheritance***: basing an object or class upon another object (*prototype-based* inheritance) or class (*class-based* inheritance), retaining similar implementation. **Subclasses** are the new classes derived from existing ones (**super/parent** class) and **inherits** (have the same) attributes and methods from its parent class, unless they're **overriden** in the subclass code. The super class is a *generalization* of the subclasses and the subclasses are *specializations* of the super class. The super and subclasses belong to a **class hierarchy**, the ***inheritance tree***, of arbitrary size. In general, the further down in the hierarchy a class appears, the more specialized its behaviour.
 
@@ -40,6 +42,31 @@
 
 ***object***: individual which is characterized by a certain comportamental pattern known as class. Also referred to as instance. Every object inherits from the class *Object*.
 
+***package***: group of related classes, interfaces and other packages, providing access privileges and namespace management. The package name characterizes all of the classes, interfaces and packages it contains. It is implemented as a directory and the belonging classes, interfaces and packages must be in it. Package hierarchy is built through directory hierarchy.
+> To declare a file as belonging to a package, the first line must be:
+
+>		package <package-name>
+
+> To use a specific class from a package, you must import it:
+
+>		import <package-name>.<class-name>
+
+> To import all classes from a package, use *:
+
+>		import <package-name>.*
+
+> Classes from the standard package java.lang don't need to be imported.
+
+***package (default) access***: the member acts as public within the package and as private outside the package. Attributes and methods with no access modifier are package access type by default.
+
+***private access***: can only be accessed within the current class.
+
+***protected access***: can only be accessed within the current package or in the *child class* of the outside package.
+
+***public access***: can be accessed indiscriminately within any class.
+
+
+
 ***polymorphism***: capacity of an object of acquiring multiple forms. It occurs due to inheritance: when a class is extended, it does not lose compatibility with its super class. The opposite is not true though: an object of the super class is not compatible with its subclasses.
 
 ### Reserved words in Java
@@ -52,9 +79,15 @@
 
 ***implements***: used to implement an interface to a class. A class can implement one or more interfaces.
 
+***private***: used to define an attribute or method as private.
+
+***protected***: used to define an attribute or method as protected.
+
+***public***: used to define an attribute or method as public.
+
 ***super***: used in subclasses to call a method or attribute from the parent class identical to it.
 
-**this** ***operator***: used to make it clear that it is referring to the current class attribute or method.
+***this***: operator used to make it clear that it is referring to the current class attribute or method.
 > Syntax:
 
 >	  this.<class-method-or-class-attribute>
