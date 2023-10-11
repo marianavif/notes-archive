@@ -18,13 +18,25 @@
 
 ***casting***: converting a data type into another data type that isn't compatible to the original one. Casting can only be validated during program execution.
 
+***checked exceptions***: exceptions used to model workable failures. They must always be declared by the methods which throw it and must be treated. To create a class which models a checked exception, one must extend the Exception class. It will be verified by the compiler.
+
 ***class***: comportamental pattern of known objects. A class has attributes and methods.
 
 > When a class is created, a new type of object is created.
 
 ***class constructor***: a special class method named with the class name which is used to create/initialize an object of the class. It doesn't necessarily receive all or any parameters, it depends on its objective. It can have verifications and/or methods before attributing a parameter to the class attributes. If a constructor is declared in a class, it automatically loses the standard constructor Java creates for it, unless it is declared explicitly. A class can have as many constructors as necessary, by method overloading. When an object of a subclass is initialized, it is interesting to call the super constructor inside the subclass constructor, unless the constructor overwrites the super constructor. If not specified to do it, Java will call the standard super constructor and create a non specific object of the super class.
 
-***encapsulation***: restricting the direct acces to some components of an object, so users cannot access state values for all of the variables of a particular object. Can be used to hide both data members and data functions or methods associated with an instantiated class or object. In object-oriented programming, it refers to the bundling of data, along with the methods that operate on that data, into a single unit.
+***collections***: a 3-layer structure composed by interfaces, abstract classess and implementation classes. A lot of collections were reformed to include generic types.
+
+***deprecated class***: classes that must not be used anymore.
+
+***encapsulation***: restricting the direct acces to some components of an object, so users cannot access state values for all of the variables of a particular object. It can be used to hide both data members and data functions or methods associated with an instantiated class or object. In object-oriented programming, it refers to the bundling of data, along with the methods that operate on that data, into a single unit.
+
+***exception class***: an exception is thrown to signal a failure. It causes an abrupt interruption of the code. In OO programming, it is typical to use it and solve it, coding ways to treat it. 
+
+***generic class***: in generic classes, the type of data which will be stored or manipulated is left open in the class definition, being provided during its use. Instantiating an object without defining its type will execute unchecked or unsafe operations. To define a generic class, there must be a '< T >'in its name and whenever one wants to refer to its type. The type must be defined when instantiating an object.
+
+	class <class-name><T> {}
 
 ***inheritance***: basing an object or class upon another object (*prototype-based* inheritance) or class (*class-based* inheritance), retaining similar implementation. **Subclasses** are the new classes derived from existing ones (**super/parent** class) and **inherits** (have the same) attributes and methods from its parent class, unless they're **overriden** in the subclass code. The super class is a *generalization* of the subclasses and the subclasses are *specializations* of the super class. The super and subclasses belong to a **class hierarchy**, the ***inheritance tree***, of arbitrary size. In general, the further down in the hierarchy a class appears, the more specialized its behaviour.
 
@@ -35,6 +47,8 @@
 ***interface***: declares an empty set of static attributes and public methods, which must be defined in each class that implements the interface.
 
 ***late binding***: resource which postpones a method resolution until when it is effectively called; it will resolve in execution time and the method used will be defined by the object *actual* class, though additional processing will be demanded to find out its type and can turn the code less efficient. To avoid late binding, declare constant methods.
+
+***legacy class***: classes from older versions of collections that remain useful due to compatibility issues.
 
 ***method***: actions done by/on the objects of a class.
 
@@ -47,7 +61,7 @@
 
 >		package <package-name>
 
-> To use a specific class from a package, you must import it:
+> To use a specific class from a package, one must import it:
 
 >		import <package-name>.<class-name>
 
@@ -65,9 +79,9 @@
 
 ***public access***: can be accessed indiscriminately within any class.
 
-
-
 ***polymorphism***: capacity of an object of acquiring multiple forms. It occurs due to inheritance: when a class is extended, it does not lose compatibility with its super class. The opposite is not true though: an object of the super class is not compatible with its subclasses.
+
+***unchecked exceptions***: exceptions used to model unworkable failures. They don't need to be declared nor treated. To create a class which models an unchecked exception, one must extend the Error class or RuntimeException class. This type of exception is not verified by the compiler.
 
 ### Reserved words in Java
 
@@ -92,6 +106,9 @@
 
 >	  this.<class-method-or-class-attribute>
 
+***throws***: used to specify which exception classes are supported by the class.
+
+***try-catch-finally***: structure used to treat exceptions. The tested code is in the *try* block and if it doesn't work, the code in the *catch* block is executed. The code in the *finally* block will **always** be executed, independently of the try-catch code. It is not possible to leave a *try-catch-finally* block without executing the *finally* block.
 
 <br>
 
@@ -99,7 +116,7 @@
 
 ***
 
-1. Download the *Java Development Kit (JDK) corresponding to your operational System.
+1. Download the *Java Development Kit (JDK) corresponding to one's operational System.
 
 2. Install it following the instructions (preferably on a simple path such as "**C:\>Java**).
 
@@ -537,7 +554,7 @@ Format a String:
 
     - *d* formats decimal integers.
 
-		> To format the number with the thousands separator, use the , flag. You can also format it for different locales, adding Locale.<country> as the first of three arguments of the function.
+		> To format the number with the thousands separator, use the , flag. One can also format it for different locales, adding Locale.<country> as the first of three arguments of the function.
 
     - *f* formats floating-point numbers.
 
@@ -553,6 +570,4 @@ Format a String:
    
     - *b* formats lower case boolean. *B* formats upper case boolean.
 
-		> If the second argument is null, the result is "false". If the argument is a boolean or Boolean, the result is the string returned by String.valueOf(arg). Otherwise, the result is "true".
-
-		
+		> If the second argument is null, the result is "false". If the argument is a boolean or Boolean, the result is the string returned by String.valueOf(arg). Otherwise, the result is "true".		
