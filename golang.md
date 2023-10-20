@@ -16,6 +16,8 @@
 
 ***keywords***: reserved words to prevent them from being used as identifiers.
 
+***literal***: a literal of a value is a text representation of the value in code.
+
 ***non-exported***: identifiers which don't start with an Unicode uppercase letter.Private identifiers. Also called `unexported`.
 
 ***unexported identifiers***: identifiers which don't start with an Unicode uppercase letter.Private identifiers. Also called `non-exported`.
@@ -82,6 +84,155 @@ An identifier is
 
 ## Basic types and Basic Value Literals
 
+### Built-in basic types
+
+- **Boolean**:
+
+  - `bool`;
+  > There are only two possible boolean values in memory and they are denoted by the two predeclared named constants: `false` and `true`.
+  
+  > Zero value: *`false`*
+
+- **Integer**:
+  
+  - **signed** types:
+
+    - **sized** types: `int8`, `int16`, `int32`, `int64`;
+    - **unsized** types: `int` (usually 32 bits wide on 32-bit systems and 64 bits wide on 64-bit systems);
+
+  - **unsigned** types (always non-negative values):
+
+    - **sized** types: `uint8`, `uint16`, `uint32`, `uint64`;
+    - **unsized** types: `uint`, `uintptr` (both usually 32 bits wide on 32-bit systems and 64 bits wide on 64-bit systems);
+        > `uintptr` is an integer type large enough to contain the bit pattern of any pointer.
+  > Zero value: *`0`*   
+
+- **Floating-point**:
+
+  - `float32`, `float64`;
+  > Zero value: *`0`*
+
+- **Complex**:
+
+  - `complex64`, `complex128`;
+  > Zero value: *`0`*
+
+- **String**:
+
+  - `string`.
+  > Zero value: `""` or `` `` ``
+
+#### Built-in type alias
+
+- `byte` is a built-in alias of `uint8`. One can view `byte` and `uint8` as the same type;
+- `rune` is a built-in alias of `int32`. One can view `rune` and `int32` as the same type.
+
+### Custom types
+
+One can define custom types for the built-in types.
+
+> Syntax:
+
+    type <custom-type-name> <built-in-type-name>
+
+One can declare custom type alias.
+
+> Syntax:
+
+    type <alias-name> = <built-in-type-name>
+
+### Basic Value Literals
+
+- **Boolean value literals**:
+
+    Go specification doesn't define boolean literals.
+
+- **Integer value literals**:
+
+    - Decimal form (base 10):
+      
+      Starts with a `0x` or `0X`.
+
+    - Octal form (base 8):
+
+      Starts with a `0`, `0o` or `0O`.
+
+    - Hex form (base 16):
+
+      Starts with a `0b` or `0B`.
+
+    - Binary form (base 2):
+
+      Starts without a `0`.
+
+- **Floating-point value literals**:
+
+    - Decimal literal (base 10):
+
+      May contain a decimal integer part, a decimal point, a decimal fractional part, and an integer exponent part (10-based). Such an integer exponent part starts with a letter `e` or `E` and suffixes with a decimal integer literal (`xEn` is equivalent to `x` is multiplied by `10^n`, and `xE-n` is equivalent to `x` is divided by `10^-n`).
+
+    - Hex literal (base 16):
+      
+    A hexadecimal floating point literal must end with 2-based exponent part, which starts with a letter `p` or `P` and suffixes with a decimal integer literal (`yPn` is equivalent to `y` is multiplied by `2^n`, and `yP-n` is equivalent to `y` is divided by `2^n`).
+    
+    Same as hex integer literals, a hexadecimal floating point literal also must start with `0x` or `0X`. Different from hex integer literals, a hexadecimal floating point literal may contain a decimal point and a decimal fractional part.
+
+- **Imaginary value literals**:
+
+    Consists of a floating-point or integer literal and a lower case letter `i`.
+    
+    Imaginary literals are used to represent the imaginary parts of complex values.
+
+- **Rune value literals**:
+
+     Rune types, including custom defined rune types and the built-in `rune` type (a.k.a., `int32` type), are special integer types, so all rune values can be denoted by the integer literals introduced above. On the other hand, many values of all kinds of integer types can also be represented by rune literals introduced below in the current subsection.
+
+    A rune value is intended to store a Unicode code point. Generally, we can view a code point as a Unicode character, but we should know that some Unicode characters are composed of more than one code points each.
+
+    A rune literal is expressed as one or more characters enclosed in a pair of quotes. The enclosed characters denote one Unicode code point value. There are some minor variants of the rune literal form. The most popular form of rune literals is just to enclose the characters denoted by rune values between two single quotes.
+
+    For example, the following rune literal variants are equivalent to `'a'`(the Unicode value of character `a` is 97):
+
+        // 141 is the octal representation of decimal number 97.
+        '\141'
+        // 61 is the hex representation of decimal number 97.
+        '\x61'
+        '\u0061'
+        '\U00000061'
+    
+    Please note, `\` must be followed by exactly three octal digits to represent a byte value, `\x` must be followed by exactly two hex digits to represent a byte value, `\u` must be followed by exactly four hex digits to represent a rune value, and `\U` must be followed by exactly eight hex digits to represent a rune value. Each such octal or hex digit sequence must represent a legal Unicode code point, otherwise, it fails to compile.
+
+    If a rune literal is composed by two characters (not including the two quotes), the first one is the character `\` and the second one is not a digital character, `x`, `u` and `U`, then the two successive characters will be escaped as one special character. The possible character pairs to be escaped are:
+
+        \a   (Unicode value 0x07) alert or bell
+        \b   (Unicode value 0x08) backspace
+        \f   (Unicode value 0x0C) form feed
+        \n   (Unicode value 0x0A) line feed or newline
+        \r   (Unicode value 0x0D) carriage return
+        \t   (Unicode value 0x09) horizontal tab
+        \v   (Unicode value 0x0b) vertical tab
+        \\   (Unicode value 0x5c) backslash
+        \'   (Unicode value 0x27) single quote
+
+    They are occasionally used in interpreted string literals.
+
+- **String value literals**:
+
+    String value literals in Go are UTF-8 encoded.
+
+    - Double quotes `" "` form: interpreted string literal. Each `\n` character pair will be escaped as one newline character, and each `\"` character pair will be escaped as one double quote character;
+    - Back quotes `` ` ` ``  form: raw string literal. No character sequences will be escaped. The back quote character is not allowed to appear in it.
+
+#### Underscore `_` in numeric literals for better readability
+
+Underscores `_` can appear in integer, floating-point and imaginary literals as digit separators to enhance code readability. But please note, in a numeric literal,
+
+- any `_` is not allowed to be used as the first or the last character of the literal;
+- the two sides of any `_` must be either literal prefixes (such as `0X`) or legal digit characters.
+
+<br>
+
+## Operators
 
 
 
