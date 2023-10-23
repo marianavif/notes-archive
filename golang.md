@@ -234,7 +234,179 @@ Underscores `_` can appear in integer, floating-point and imaginary literals as 
 
 ## Operators
 
+- Basic binary arithmetic operators:
 
+  The two operands must be both values of the same basic numeric type.
+
+  - Assignment operator:
+
+    `x = y`
+
+  - Addition:
+
+    `x + y`
+
+  - Subtraction:
+
+    `x - y`
+  
+  - Multiplication:
+
+    `x * y`
+
+  - Division:
+
+    `x / y`
+
+  The two operands must be both values of the same basic integer type.
+
+  - Remainder:
+
+    `x % y`
+
+- Bitwise binary arithmetic operators (base 2):
+
+  The two operands must be both values of the same integer type.
+
+  - Bitwise and:
+
+    `x & y`
+
+    `1100 & 1010` results in `1000`.
+
+  - Bitwise or:
+
+    `x | y`
+
+    `1100 | 1010` results in `1110`.
+
+  - Bitwise xor:
+
+    `x ^ y`
+
+    `1100 ^ 1010` results in `0110`.
+
+  - Bitwise clear:
+
+    `x &^ y`
+
+    `1100 &^ 1010` results in `0100`.
+
+  The left operand must be an integer and the right operand must be also an integer (if it is a constant, then it must be non-negative), their types are not required to be identical. A negative right operand (must be a non-constant) will cause a panic at run time.
+
+  - Bitwise left shift:
+
+    `x << y`
+
+    `1100 << 3` results in `11000000`.
+
+  - Bitwise right shift:
+
+    `x >> y`
+
+    `1100 >> 3` results in `1`.
+    In a bitwise-right-shift operation, all the freed-up bits at left are filled with the sign bit (the highest bit) of the left operand. For example, if the left operand is an `int8` value `-128`, or `10000000` in the binary literal form, then `10000000 >> 2` results in `11100000`, aka, `-32`.
+
+For a binary arithmetic operator `op`, `x = x op y` can be shortened to `x op= y`. In the short form, `x` will be only evaluated once.
+
+- Unary arithmetic operators:
+
+  - Positive:
+
+    `+ x`
+  
+  - Negative:
+
+    `- x`
+  
+  - Bitwise complement (bitwise not):
+
+    `^x`
+    Equivalent to `y^x`, where `y` is a value all of which bits are 1.
+
+  Operations using the increment and decrement operators don't return any results, so such operations cannot be used as expressions. The operator must follow the operand.
+
+  - Increment:
+
+    `x++`
+  
+  - Decrement:
+
+    `x--`
+
+- String concatenation operator:
+
+  Both operands must be values of the same string type.
+
+  `x + y`
+
+  The `op=` form also applies for this operator.
+
+- Boolean operators:
+
+  The two operands must be both values of the same boolean type.
+
+  - Boolean and (aka conditional and):
+
+    `x && y`
+
+  - Boolean or (aka conditional or):
+
+    `x || y`
+  
+  - Boolean not:
+
+    `!x`
+  
+- Comparison operators:
+
+  Generally, the types of its two operands must be the same.
+
+  - Equal to:
+
+    `x == y`
+  
+  - Not equal to:
+
+    `x != y`
+  
+  The two operands must be both values of the same integer type, floating-point type or string type.
+
+  - Less than:
+  
+    `x < y`
+  
+  - Less than or equal to:
+
+    `x <= y`
+  
+  - Larger than:
+
+    `x > y`
+  
+  - Larger than or equal to:
+  
+    `x >= y`
+  
+- Pointer related operators:
+
+  - Dereference a pointer value:
+
+    `*p`
+  
+  - Take the address of an addressable value:
+  
+    `&p`
+
+#### Operator Precedence
+
+    1 | *   /   %   <<  >>  &   &^
+    2 | +   -   |   ^
+    3 | ==  !=  <   <=  >   >=
+    4 | &&
+    5 | ||
+
+<br>
 
 ## Line Break Rules
 
