@@ -8,6 +8,8 @@
 
 ***code elements***: named functions, named values (including variables and named constants), defined types and type alias.
 
+***function closure***: function value that references variables from outside its body. The function may access and assign to the referenced variables; in this sense the function is "bound" to the variables. 
+
 ***exported identifiers***: an identifier starting with an Unicode uppercase letter. Public identifiers.
 
 ***identifiers***: a token which must be composed of Unicode letters, Unicode digits and `_` (underscore), and start with either an Unicode letter or `_`. Names of code elements, package names and package import names must be identifiers.
