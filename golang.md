@@ -410,6 +410,46 @@ For a binary arithmetic operator `op`, `x = x op y` can be shortened to `x op= y
 
 <br>
 
+## Formatting Strings 
+
+`%v` prints an instance of a struct.
+
+`%+v` prints an instance of a struct, including the struct's field names.
+
+`%#v` prints a Go syntax representation of the value.
+
+`%T` prints the type of a value.
+
+`%t` prints bool types.
+
+`%d` prints standard, 10-based integers.
+
+`%b` prints a binary representation of an integer.
+
+`%c` prints the character corresponding to the given integer.
+
+`%x` provides hex encoding.
+
+`%f` prints basic decimal floating-points.
+
+`%e` and `%E` format the float in scientific notation.
+
+`%s` prints basic string.
+
+`%q` double-quotes strings as in Go source.
+
+When formatting numbers one will often want to control the width and precision of the resulting figure. To specify the width of an integer, use a number after the % in the verb. By default the result will be right-justified and padded with spaces.
+
+One can also specify the width of printed floats, though usually one will also want to restric the decimal precision at the same time with the width.precision syntax.
+
+To left-justifiy, use the `-` flag.
+
+One may also want to control width when formatting strings, especially to ensure that they align in table-like output. For basic right-justified width, use a number after the % in the verb. To left-justify, use the `-` flag as with numbers.
+
+
+
+
+
 ## Line Break Rules
 
 Coding style cannot be arbitrary.
