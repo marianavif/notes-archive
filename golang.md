@@ -28,7 +28,35 @@
 
 ### Identifiers
 
-An identifier is 
+Identifiers name program entities such as variables and types. An identifier is a sequence of one or more letters and digits. The first character in an identifier must be a letter.
+
+#### Blank identifier
+
+The blank identifier is represented by the underscore character `_`. It serves as an anonymous placeholder instead of a regular (non-blank) identifier and has special meaning in declarations, as an operand, and in assignment statements.
+
+#### Predeclared identifiers
+
+The following identifiers are implicitly declared in the universe block:
+
+    Types:
+            any bool byte comparable
+            complex64 complex128 error float32 float64
+            int int8 int16 int32 int64 rune string
+            uint uint8 uint16 uint32 uint64 uintptr
+    Constants:
+            true false iota
+    Zero value:
+            nil
+    Functions:
+            append cap clear close complex copy delete imag len
+            make max min new panic print println real recover
+
+#### Exported identifiers
+
+An identifier may be exported to permit access to it from another package. An identifier is exported if both:
+
+1. the first character of the identifier's name is a Unicode uppercase letter;
+2. the identifier is declared in the package block or it is a field name or method name.
 
 ### Keywords
 
@@ -475,3 +503,78 @@ One consequence of the semicolon insertion rules is that the self increment and 
 Another consequence of the semicolon insertion rules is one can't break a line before the dot `.`.
 
 In some syntax forms containing multiple alike items, commas are used as separators, such as composite literals, function argument lists, function parameter lists and function result lists. In such a syntax form, the last item can always be followed by a comma. If the following comma is the *last effective character in its respective code line*, then the comma is **required**, otherwise, it is optional. Compilers will not insert commas automatically for any cases. 
+
+<br>
+
+## Compiling and running a code in Go
+
+> The path to the code file is explicited when one's not working in the folder where the file is located.
+
+Compiling a code in terminal:
+
+    go build <path-to-code-file>/<code-file-name>.go
+
+Running a code after compiling it in terminal:
+
+    <path-to-executable-program>/<executable-program-name>
+
+Compiling and running a code in terminal:
+
+    go run <path-to-code-file>/<code-file-name>.go
+
+## Go commands
+
+Declare a package:
+
+    package <package-name>
+
+> The executable code package in go is called `main`.
+
+Import a local package:
+
+    import "<package-name>"
+
+Import an external package:
+
+    import "<path-to-the-external-package>"
+
+Import multiple packages:
+
+    import (<insert-packages-separated-by-linebreak>)
+
+Declare a zero-valued variable:
+
+    var <variable-name> <variable-type>
+
+Declare a non-zero-valued variable:
+
+    var <variable-name> <variable-type> = <variable-value>
+
+Declare a non-zero-valued variable (shortened) with type inference:
+
+    <variable-name> := <variable-value>
+
+> Go infers the variable type from the value one assigns to it. If one assigns an integer to a variable, Go will infer it as an `int` type. If one assigns a float or a complex to a variable, Go will infer it as the largest type, i.e. `float64` and `complex128`.
+
+Declare a non-returnable and argumentless function:
+
+    func <function-name>() {<commands>}
+
+> The executable part of the code must be run inside a non-returnable and argumentless function called `main`
+
+> There must not be a breakline in between the function name and the block's opening bracket.
+
+### Packages
+
+#### fmt package
+
+Concatenate strings in `fmt.Print` and `fmt.Println` functions:
+
+    fmt.Print(<string1>, <string2>)
+    fmt.Println(<string1>,<string2>)
+
+#### reflect package
+
+Return the type name of a variable:
+
+    reflect.TypeOf(<variable-name>)
