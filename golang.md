@@ -24,7 +24,6 @@
 
 ***unexported identifiers***: identifiers which don't start with an Unicode uppercase letter.Private identifiers. Also called `non-exported`.
 
-<br>
 
 ### Identifiers
 
@@ -109,8 +108,6 @@ An identifier may be exported to permit access to it from another package. An id
 ***type***: used to define custom types of values for the built-in `boolean` and `string` types.
 
 ***var***: used to declare variables.
-
-<br>
 
 ## Basic types and Basic Value Literals
 
@@ -259,8 +256,6 @@ Underscores `_` can appear in integer, floating-point and imaginary literals as 
 
 - any `_` is not allowed to be used as the first or the last character of the literal;
 - the two sides of any `_` must be either literal prefixes (such as `0X`) or legal digit characters.
-
-<br>
 
 ## Operators
 
@@ -436,8 +431,6 @@ For a binary arithmetic operator `op`, `x = x op y` can be shortened to `x op= y
     4 | &&
     5 | ||
 
-<br>
-
 ## Formatting Strings 
 
 `%v` prints an instance of a struct.
@@ -474,10 +467,6 @@ To left-justifiy, use the `-` flag.
 
 One may also want to control width when formatting strings, especially to ensure that they align in table-like output. For basic right-justified width, use a number after the % in the verb. To left-justify, use the `-` flag as with numbers.
 
-
-
-
-
 ## Line Break Rules
 
 Coding style cannot be arbitrary.
@@ -504,7 +493,137 @@ Another consequence of the semicolon insertion rules is one can't break a line b
 
 In some syntax forms containing multiple alike items, commas are used as separators, such as composite literals, function argument lists, function parameter lists and function result lists. In such a syntax form, the last item can always be followed by a comma. If the following comma is the *last effective character in its respective code line*, then the comma is **required**, otherwise, it is optional. Compilers will not insert commas automatically for any cases. 
 
-<br>
+## Types of commands
+
+- **Code block**: list of instructions delimited by `{}`.
+
+      { <commands> }
+
+> Go does not accept code blocks alone in a line (beginning with a bracket `{` )
+
+- **Control flow statements**: conditional and laces commands to determine the execution flow.
+
+  - Conditional commands:
+    
+    - **if-else**
+
+         Syntax:
+
+          if <boolean-condition1> <code-block1> else if <boolean-condition2> <code-block2> else <code-blockN>
+
+    - **switch-case-default**
+
+        Syntax:
+
+          switch <variable/statement> {
+          case <variable-value1>:
+            <commands-list>
+          case <variable-valueN>:
+            <commands-list>
+          default:
+            <commands-list>
+          } 
+
+  - Repetition commands:
+
+    - **for**
+      
+      Syntax:
+
+        - forever loop
+
+              for <code-block>
+
+        - conditional loop
+
+              for <initial-expression>; <boolean-expression>; <incremental-expression> <code-block>
+
+        - iterate over a slice or map
+
+              for <index-variable>, <value-variable> := range <slice-name> <code-block>
+
+          > When ranging over a slice, two values are returned for each iteration. The first is the index, and the second is a copy of the element at that index. One can skip the index or value by assigning to the blank identifier `_`. If one only wants the index, one can omit the second variable.
+
+- **variable**: 
+
+  - Declare a zero-valued variable:
+
+        var <variable-name> <variable-type>
+
+  - Declare a non-zero-valued variable:
+
+        var <variable-name> <variable-type> = <variable-value>
+
+  - Declare a non-zero-valued variable (shortened) with type inference:
+
+        <variable-name> := <variable-value>
+
+    > Go infers the variable type from the value one assigns to it. If one assigns an integer to a variable, Go will infer it as an `int` type. If one assigns a float or a complex to a variable, Go will infer it as the largest type, i.e. `float64` and `complex128`.
+
+  - Declare multiple non-zero-valued variables (shortened) with type inference:
+
+        <variable-name1>, <variable-nameN> := <variable-value1>, <variable-valueN>
+
+- **constant**: a value of a constant cannot change.
+
+  - Declare a constant:
+
+        const <constant-name> <constant-type> = <constant-value>
+
+- **arrays**: fixed-sized set of values of the same type.
+
+  - Declare an empty array:
+
+        var <array-name> [<array-length(integer)>]<array-type>
+    
+    > An empty array has zero-values in each of its entry.
+
+  - Declare an array specifying its values:
+
+        var <array-name> [<array-length(integer)>]<array-type> = {<value1>,<valueN>}
+  
+  - Declare an array specifying its values (shortened):
+
+        <array-name> := [<array-length(integer)>]<array-type>{<value1>,<valueN>}
+
+- **slices**: abstract set of values which is of dinamic size and is based on an existing array, empty (default) or not.
+
+  > A slice does not store any data, it just describes a section of an underlying array. Changing the elements of a slice modifies the corresponding elements of its underlying array. Other slices that share the same underlying array will see those changes. 
+
+  > A slice has both a length and a capacity. The length of a slice is the number of elements it contains. The capacity of a slice is the number of elements in the underlying array, counting from the first element in the slice. 
+
+  - Declare an slice from an empty (default) array:
+
+        <slice-name> := make([]<slice-type>, <slice-length(integer)>, <slice-capacity(integer)>)
+
+  - Declare an slice from an empty (default) array specifying its values:
+
+        <slice-name> := []<slice-type>{<value1>,<valueN>}
+
+  - Declare an slice from an existing array:
+
+        var <slice-name> []<slice-type> = <existing-array-name>[<lowest>:<highest-value>]
+    
+    > This selects a half-open range which includes the first element (lowest) but excludes the last one (highest).
+
+
+- **function**: set of commands to be executed when the function is called. May need arguments (parameters) and may return a value.
+
+  - Declare a non-returnable and argumentless function:
+
+        func <function-name>() <code-block>
+
+  > The executable part of the code must be run inside a non-returnable and argumentless function called `main`
+
+  > There must not be a breakline in between the function name and the block's opening bracket.
+
+  - Declare a single-valued returnable function:
+
+        func <function-name> (<argument1> <argument-type1>, <argumentN> <argument-typeN>) <returned-value-type> <code-block>
+
+  - Declare a multiple-valued returnable function:
+  
+        func <function-name> (<argument1> <argument-type1>, <argumentN> <argument-typeN>) (<returned-value-type1>, <returned-value-typeN>) <code-block> 
 
 ## Compiling and running a code in Go
 
@@ -542,29 +661,38 @@ Import multiple packages:
 
     import (<insert-packages-separated-by-linebreak>)
 
-Declare a zero-valued variable:
+Return the length of an array or slice:
 
-    var <variable-name> <variable-type>
+      len(<array/slice-name>)
 
-Declare a non-zero-valued variable:
+Return the capacity of a slice:
 
-    var <variable-name> <variable-type> = <variable-value>
+      cap(<slice-name>)
 
-Declare a non-zero-valued variable (shortened) with type inference:
+Append new elements to a slice:
 
-    <variable-name> := <variable-value>
+     <slice-name> = append(<slice-name>,<value-to-append1>,<value-to-appendN>) 
 
-> Go infers the variable type from the value one assigns to it. If one assigns an integer to a variable, Go will infer it as an `int` type. If one assigns a float or a complex to a variable, Go will infer it as the largest type, i.e. `float64` and `complex128`.
 
-Declare a non-returnable and argumentless function:
 
-    func <function-name>() {<commands>}
-
-> The executable part of the code must be run inside a non-returnable and argumentless function called `main`
-
-> There must not be a breakline in between the function name and the block's opening bracket.
 
 ### Packages
+
+#### bufio package
+
+Start file to read:
+
+    bufio.NewReader(<file-name>)
+
+  > The file must be opened before this command. One can open it using os package function Open.
+
+Return string read until specified character delimiter:
+
+    bufio.ReadString(<character-delimiter>)
+
+  > Also returns an error status.
+
+  > Characters use single quotes `''`.
 
 #### fmt package
 
@@ -573,8 +701,66 @@ Concatenate strings in `fmt.Print` and `fmt.Println` functions:
     fmt.Print(<string1>, <string2>)
     fmt.Println(<string1>,<string2>)
 
+Read a value from the keyboard and assign it to a variable (only assigns values of the same type as the specified variable):
+
+    fmt.Scan(&<variable>)
+
+Read and format a value from the keyboard and assign it to a variable:
+
+    fmt.Scanf("<modifier>", &<variable>)
+
+> The modifier is the same as used in formatting strings.
+
+#### io package
+
+End of file error:
+
+    io.EOF
+
+#### net package
+
+##### http package
+
+Return a response and an error status from a web address:
+
+    http.Get(<web-address>)
+
+Get status code from an HTTP response:
+
+    <response>.StatusCode
+
+#### os package
+
+Return opened file:
+
+    os.Open(<file-path>)
+
+Close opened file f:
+
+    f.Close()
+
+Exit the program with success status:
+
+    os.Exit(0)
+
+Exit the program with failure status:
+
+    os.Exit(-1)
+
 #### reflect package
 
 Return the type name of a variable:
 
     reflect.TypeOf(<variable-name>)
+
+#### strings package
+
+Return a slice of the string s, with all leading and trailing white space removed:
+
+    strings.TrimSpace(s)
+
+#### time package
+
+Wait for a moment before executing next steps:
+
+    time.Sleep(d Duration)
