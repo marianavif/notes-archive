@@ -14,6 +14,8 @@
 
 ***identifiers***: a token which must be composed of Unicode letters, Unicode digits and `_` (underscore), and start with either an Unicode letter or `_`. Names of code elements, package names and package import names must be identifiers.
 
+***variadic***: a variadic function is a function that receives an indeterminated number of parameters.
+
 > Keywords cannot be used as identifiers.
 
 ***keywords***: reserved words to prevent them from being used as identifiers.
@@ -499,7 +501,7 @@ In some syntax forms containing multiple alike items, commas are used as separat
 
       { <commands> }
 
-> Go does not accept code blocks alone in a line (beginning with a bracket `{` )
+  > Go does not accept code blocks alone in a line (beginning with a bracket `{` )
 
 - **Control flow statements**: conditional and laces commands to determine the execution flow.
 
@@ -545,7 +547,7 @@ In some syntax forms containing multiple alike items, commas are used as separat
           > When ranging over a slice, two values are returned for each iteration. The first is the index, and the second is a copy of the element at that index. One can skip the index or value by assigning to the blank identifier `_`. If one only wants the index, one can omit the second variable.
 
 - **variable**: 
-
+  > Variable names follow the CamelCase convention.
   - Declare a zero-valued variable:
 
         var <variable-name> <variable-type>
@@ -606,6 +608,32 @@ In some syntax forms containing multiple alike items, commas are used as separat
     
     > This selects a half-open range which includes the first element (lowest) but excludes the last one (highest).
 
+- **struct**: set of variable or constants which characterize a type.
+
+  - Declare a new struct type:
+
+        type <struct-type-name> struct {
+          <variable-name1> <variable-type1>
+          <variable-nameN> <variable-typeN>
+        }
+  
+  - Declare an struct and assign it to a variable (extended):
+
+        var <variable-name> <struct-type-name>  = {<variable-name1>: <variable-value1>,<variable-nameN>: <variable-valueN>}
+  
+  - Declare an struct and assign it to a variable:
+
+        var <variable-name> <struct-type-name> = {<variable-value1>,<variable-valueN>}
+  
+  - Declare an struct and assign it to a variable (shortened):
+
+        <variable-name> := <struct-type-name>{<variable-value1>,<variable-valueN>}
+
+  - Declare an struct using `new` operator, assigning it to a pointer variable:
+
+        <variable-name> = new(<struct-type-name>)
+
+    > This variable must be a pointer. To get the value in the address of the pointer, one must refer to the variable using `*<variable-name>`.
 
 - **function**: set of commands to be executed when the function is called. May need arguments (parameters) and may return a value.
 
@@ -624,6 +652,20 @@ In some syntax forms containing multiple alike items, commas are used as separat
   - Declare a multiple-valued returnable function:
   
         func <function-name> (<argument1> <argument-type1>, <argumentN> <argument-typeN>) (<returned-value-type1>, <returned-value-typeN>) <code-block> 
+
+  - Declare a variadic function:
+
+        func <function-name> (<argument> ...<argument-type>) (<returned-value-type1>, <returned-value-typeN>) <code-block>
+
+- **interface**: set of methods common to one or more types.
+
+  - Declare an interface type:
+
+        type <interface-name> interface {
+          <method1> <method-type1>
+          <methodN> <method-typeN>
+          }
+
 
 ## Compiling and running a code in Go
 
