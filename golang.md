@@ -495,6 +495,26 @@ Another consequence of the semicolon insertion rules is one can't break a line b
 
 In some syntax forms containing multiple alike items, commas are used as separators, such as composite literals, function argument lists, function parameter lists and function result lists. In such a syntax form, the last item can always be followed by a comma. If the following comma is the *last effective character in its respective code line*, then the comma is **required**, otherwise, it is optional. Compilers will not insert commas automatically for any cases. 
 
+## Comments
+
+### Line comments
+
+To comment a line, start with a `//` and the rest of it is ignored by the compiler.
+
+### Block comments
+
+Block comments can span multiple lines. They start with a `/*` and end with a `*/`, enveloping everything inside.
+
+## Documentation
+
+Go includes a program `go doc` for extracting and viewing documentation from `.go` files. For information about a package, use:
+
+    go doc <package-name>
+
+For information about a package function, use:
+
+    go doc <package-name>.<package-function-name>
+
 ## Types of commands
 
 - **Code block**: list of instructions delimited by `{}`.
@@ -560,7 +580,7 @@ In some syntax forms containing multiple alike items, commas are used as separat
 
         <variable-name> := <variable-value>
 
-    > Go infers the variable type from the value one assigns to it. If one assigns an integer to a variable, Go will infer it as an `int` type. If one assigns a float or a complex to a variable, Go will infer it as the largest type, i.e. `float64` and `complex128`.
+    > Go infers the variable type from the value one assigns to it. If one assigns an integer to a variable, Go will infer it as an `int` type (32-bit integer in 32-bit systems and 64-bit integer in 64-bit systems). If one assigns a float or a complex to a variable, Go will infer it as the largest type, i.e. `float64` and `complex128`.
 
   - Declare multiple non-zero-valued variables (shortened) with type inference:
 
@@ -641,7 +661,7 @@ In some syntax forms containing multiple alike items, commas are used as separat
 
         func <function-name>() <code-block>
 
-  > The executable part of the code must be run inside a non-returnable and argumentless function called `main`
+  > The executable part of the code is the non-returnable and argumentless function called `main` inside the package `main`.
 
   > There must not be a breakline in between the function name and the block's opening bracket.
 
@@ -666,42 +686,45 @@ In some syntax forms containing multiple alike items, commas are used as separat
           <methodN> <method-typeN>
           }
 
+- **package**: directory of `.go` files.
+
+  - Declare a package:
+
+        package <package-name>
+
+    > If the package declaration is `package main`, then the program will be compiled into an executable.
+
+  - Import a local package:
+
+        import "<package-name>"
+
+    > One can assign an alias to the imported package, which will be used to call functions instead of the name of the package itself.
+    >
+    >     import <alias> "<package-name>"
+
+  - Import an external package:
+
+        import "<path-to-the-external-package>"
+
+  - Import multiple packages:
+
+        import (<insert-packages-separated-by-linebreak>)
 
 ## Compiling and running a code in Go
 
 > The path to the code file is explicited when one's not working in the folder where the file is located.
 
-Compiling a code in terminal:
+Compile a code in terminal and create an executable file:
 
     go build <path-to-code-file>/<code-file-name>.go
 
-Running a code after compiling it in terminal:
-
-    <path-to-executable-program>/<executable-program-name>
-
-Compiling and running a code in terminal:
+Compile and run a code in terminal, without creating an executable file:
 
     go run <path-to-code-file>/<code-file-name>.go
 
 ## Go commands
 
-Declare a package:
-
-    package <package-name>
-
-> The executable code package in go is called `main`.
-
-Import a local package:
-
-    import "<package-name>"
-
-Import an external package:
-
-    import "<path-to-the-external-package>"
-
-Import multiple packages:
-
-    import (<insert-packages-separated-by-linebreak>)
+### Commands from built-in packages
 
 Return the length of an array or slice:
 
@@ -714,9 +737,6 @@ Return the capacity of a slice:
 Append new elements to a slice:
 
      <slice-name> = append(<slice-name>,<value-to-append1>,<value-to-appendN>) 
-
-
-
 
 ### Packages
 
