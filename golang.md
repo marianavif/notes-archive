@@ -433,7 +433,7 @@ For a binary arithmetic operator `op`, `x = x op y` can be shortened to `x op= y
     4 | &&
     5 | ||
 
-## Formatting Strings 
+## Verbs
 
 `%v` prints an instance of a struct.
 
@@ -758,20 +758,40 @@ Return string read until specified character delimiter:
 
 #### fmt package
 
+Concatenate data and return it in a string:
+
+    fmt.Sprint(<value1>,<valueN>)
+
+Concatenate data and return it in a string, adding a space in between arguments:
+
+    fmt.Sprintln(<value1>,<valueN>)
+
+Interpolate strings or leave placeholders in a string, using values to fill them in, then return the string:
+
+    fmt.Sprintf("%v",<variable-name>)
+
 Concatenate strings in `fmt.Print` and `fmt.Println` functions:
 
     fmt.Print(<string1>, <string2>)
     fmt.Println(<string1>,<string2>)
+ 
+  > Concatenating strings with a comma in Print and Println are different things. `Println` function formats the data including a space in between each argument and adding a line break at the end. `Print` function does not format its data and adds no line break at the end.
+
+Interpolate strings or leave placeholders in a string, using values to fill them in, then print in terminal:
+
+    fmt.Printf("%v",<variable-name>)
+  
+  > `%v` gets the value from the following argument. One can add multiple placeholders, the verbs will get the value from the arguments in the order they are written.
 
 Read a value from the keyboard and assign it to a variable (only assigns values of the same type as the specified variable):
 
     fmt.Scan(&<variable>)
 
+  > It only reads the value before the first space.
+
 Read and format a value from the keyboard and assign it to a variable:
 
-    fmt.Scanf("<modifier>", &<variable>)
-
-> The modifier is the same as used in formatting strings.
+    fmt.Scanf("%v", &<variable>)
 
 #### io package
 
