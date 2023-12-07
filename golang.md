@@ -655,6 +655,38 @@ For information about a package function, use:
 
     > This variable must be a pointer. To get the value in the address of the pointer, one must refer to the variable using `*<variable-name>`.
 
+  - Access individual field within a struct:
+
+        <struct-variable-name>.<struct-field-name>
+
+  > To actually change the values of the fields of an instance of a struct, one must use a pointer to the instance.
+
+- **map**: unordered collection of **keys** and **values**. Values in map are accessed by their keys, not by indices.
+
+  - Declare an empty map and assign it to a variable:
+
+        <variable-name> := make(map[<key-type>]<value-type>)
+  
+  - Declare a map with values and assign it to a variable:
+
+        <variable-name> := map[<key-type>]<value-type>{
+          <key-name1>: <value1>,
+          <key-nameN>: <valueN>,
+        }
+  - Access values in a map:
+
+        <variable-name1>,<variable-name2> := <map-name>[<key-value>]
+    
+    > The second variable receives a boolean, which is `true` if the specified key was found in the map; it is optional. The first variable receives the value if the specified key was found in the map, or a default value if it wasn't.
+
+  - Add new pair key-value to a map or change the value of an existing key:
+
+        <map-name>[<key>] = <value>
+  
+  - Delete an existing key from a map:
+
+        delete(<map-name>,<key-value-to-delete>)
+
 - **function**: set of commands to be executed when the function is called. May need arguments (parameters) and may return a value.
 
   - Declare a non-returnable and argumentless function:
@@ -672,6 +704,8 @@ For information about a package function, use:
   - Declare a multiple-valued returnable function:
   
         func <function-name> (<argument1> <argument-type1>, <argumentN> <argument-typeN>) (<returned-value-type1>, <returned-value-typeN>) <code-block> 
+
+  > Changes to an array parameter will only be local to the function, while changes to a slice parameter will be permanent.
 
   - Declare a variadic function:
 
