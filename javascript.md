@@ -114,11 +114,11 @@
 
 ### Line comment
 
-To comment a line, start with a `` and the rest of it is ignored by the compiler.
+To comment a line, start with a `//` and the rest of it is ignored by the compiler.
 
 ### Block comment
 
-Block comments can span multiple lines. They start with a `` and end with a ``, enveloping everything inside.
+Block comments can span multiple lines. They start with a `/*` and end with a `*/`, enveloping everything inside.
 
 ## Types of command
 
@@ -158,7 +158,8 @@ Block comments can span multiple lines. They start with a `` and end with a ``, 
 		Syntax:
 
 			for (<inital-expression>;<boolean-expression>;<incremental-expression>) <code-block>
-
+		> The initial expression may initialize a local variable and if so, the reserved word `let` is needed in order to do it.
+		
 	- **while**
 
 		Syntax:
@@ -195,8 +196,24 @@ Block comments can span multiple lines. They start with a `` and end with a ``, 
 
 - **arrays**:
 
-  - Declare an array:
-  	
+  - Declare an array and assign it to a variable:
+
+		let <variable-name> = new Array(<value1>,<value2>,<valueN>)
+	
+	> `const` and `var` could be used instead.
+
+  - Access a value from an array:
+
+		<array-name>[<value-index>]
+
+  - Add a value to an existing array:
+
+		<array-name>.push(<value>)
+
+  - Remove values from an existing array:
+
+		<array-name>.splice(<value-index1>,<value-indexN>,<number-of-values-to-be-removed>)
+
 - **function**:
 
   - Declare a function:
@@ -208,6 +225,20 @@ Block comments can span multiple lines. They start with a `` and end with a ``, 
 
 Print a value in terminal:
 
-		console.log(<value>)
+	console.log(<value>)
 
 > It can be a variable, a constant, the returned value of a function, or a raw value.
+
+> Separating variables with a comma will add a space in between its values.
+
+> To format a text in `console.log()`, one can write a text in between ` `` ` and add variable values inside the brackets in `${}`, e.g.
+> 
+> 	  console.log(`<text> ${<variable-name>} <text>`)
+
+Convert a value to integer type:
+
+	parseInt(<value-to-be-converted>)
+
+Convert a value to float type:
+
+	parseFloat(<value-to-be-converted>)
