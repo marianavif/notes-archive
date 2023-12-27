@@ -22,9 +22,7 @@
 
 ***literal***: a literal of a value is a text representation of the value in code.
 
-***non-exported***: identifiers which don't start with an Unicode uppercase letter.Private identifiers. Also called `unexported`.
-
-***unexported identifiers***: identifiers which don't start with an Unicode uppercase letter.Private identifiers. Also called `non-exported`.
+***non-exported, unexported***: identifiers which don't start with an Unicode uppercase letter. Private identifiers.
 
 
 ### Identifiers
@@ -572,6 +570,8 @@ For information about a package function, use:
 
         var <variable-name> <variable-type>
 
+  > Declare global package variables with the keyword `var`.
+
   - Declare a non-zero-valued variable:
 
         var <variable-name> <variable-type> = <variable-value>
@@ -661,12 +661,14 @@ For information about a package function, use:
 
   > To actually change the values of the fields of an instance of a struct, one must use a pointer to the instance.
 
-- **map**: unordered collection of **keys** and **values**. Values in map are accessed by their keys, not by indices.
+- **map**: unordered collection of **keys** and **values**. Values in map are accessed by their keys, not by indices. Values must be comparable types.
 
   - Declare an empty map and assign it to a variable:
 
         <variable-name> := make(map[<key-type>]<value-type>)
   
+  > Maps can be `nil`. But one cannot insert keys and values to a `nil` map, as it panics in execution time. 
+
   - Declare a map with values and assign it to a variable:
 
         <variable-name> := map[<key-type>]<value-type>{
@@ -710,6 +712,11 @@ For information about a package function, use:
   - Declare a variadic function:
 
         func <function-name> (<argument> ...<argument-type>) (<returned-value-type1>, <returned-value-typeN>) <code-block>
+
+  - Declare a method of an struct receptor:
+
+        func (<receptor-name> <receptor-type>) <method-name>(<argument1> <argument-type1>, <argumentN> <argument-typeN>) (<returned-value-type1>, <returned-value-typeN>) <code-block>
+
 
 - **interface**: set of methods common to one or more types.
 
@@ -755,6 +762,26 @@ Compile a code in terminal and create an executable file:
 Compile and run a code in terminal, without creating an executable file:
 
     go run <path-to-code-file>/<code-file-name>.go
+
+## Testing
+
+To create tests and effectively test, import package `testing` and do as following:
+
+- Test function must be in a file named such as `<name>_test.go`;
+
+- Test function must begin with the word `Test` and the next word must begin with upper case letter;
+
+- Test function receives a single argument, which is `t *testing.T`.
+
+To test, run the `go test` command in the command line.
+
+> Best practice at TDD (Test Driven Development) is to write the test before the actual function.
+
+### Examples
+
+Example functions take no argument and begin with the word `Example` instead of `Test`. One must comment the expected output in a line inside the example function:
+
+    // Output: <expected-output>
 
 ## Go commands
 
@@ -868,6 +895,12 @@ Exit the program with failure status:
 Return the type name of a variable:
 
     reflect.TypeOf(<variable-name>)
+
+Return true if the values of both variables are equal:
+
+    reflect.DeepEqual(<variable-name1>,<variable-name2>)
+
+> reflect.DeepEqual() compares variables of different types, so be careful.
 
 #### strings package
 
