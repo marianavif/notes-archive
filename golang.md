@@ -717,6 +717,11 @@ For information about a package function, use:
 
         func (<receptor-name> <receptor-type>) <method-name>(<argument1> <argument-type1>, <argumentN> <argument-typeN>) (<returned-value-type1>, <returned-value-typeN>) <code-block>
 
+  - Declare an anonymous function and execute it right away:
+
+        func(<argument1> <argument-type1>, <argumentN> <argument-typeN>) (<returned-value-type1>, <returned-value-typeN>) <code-block>()
+  
+  > Anonymous functions maintain access to the lexical scope where they are defined: all variables available at the point the function is declared are also available in the function body.
 
 - **interface**: set of methods common to one or more types.
 
